@@ -89,7 +89,7 @@ class WebClient:
         try:
             connection = http.client.HTTPConnection(self.client_uri)
             connection.request('POST', self.client_url, params, headers)
-            response = connection.getresponse()
+            connection.getresponse()
             connection.close()
         except:
             print("[ ERROR ] connection to remote server failed ")
