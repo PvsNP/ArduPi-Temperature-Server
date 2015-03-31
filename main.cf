@@ -4,14 +4,14 @@
 
 # resources path, such as databases and logs file (in this versions
 # they're not implemented). Change it for your desired configuration
-database_resources_path = /Users/ArduTemp/resources
+database_resources_path = /Users/ArduPi/resources
 database_name = temperatures.db
 database_table_name = temperatures
 database_creation_query = CREATE TABLE temperatures (id INTEGER PRIMARY KEY, temperature REAL, measuretime VARCHAR(32) )
 
 # URI and URL to the web service for the network connection interface
-client_uri = sunstorm.altervista.org
-client_url = /iot/test.php
+client_uri = www.example.com
+client_url = /path/to/resource
 
 # -----------------------------------------------------------------
 # ARDUINO BOARD PARAMETERS
