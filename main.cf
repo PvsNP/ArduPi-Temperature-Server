@@ -1,0 +1,24 @@
+# ---------------------------------------------------------------
+# THIS IS THE CONFIGURATION FILE FOR THE ArduTemp SERVER v. 0.0.1
+# ---------------------------------------------------------------
+
+# resources path, such as databases and logs file (in this versions
+# they're not implemented). Change it for your desired configuration
+database_resources_path = /Users/ArduTemp/resources
+database_name = temperatures.db
+database_table_name = temperatures
+database_creation_query = CREATE TABLE temperatures (id INTEGER PRIMARY KEY, temperature REAL, measuretime VARCHAR(32) )
+
+# URI and URL to the web service for the network connection interface
+client_uri = sunstorm.altervista.org
+client_url = /iot/test.php
+
+# -----------------------------------------------------------------
+# ARDUINO BOARD PARAMETERS
+
+# usb port - check in '/dev' on your temperature server
+arduino_usb_port = /dev/ttyACM0
+arduino_baud_rate = 9600
+
+# idle time between a sensor reading and another
+arduino_idle_time = 60
