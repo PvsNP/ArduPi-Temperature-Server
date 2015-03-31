@@ -86,8 +86,10 @@ class WebClient:
         params = urllib.parse.urlencode({'temperature': data[1], 'measuretime': data[2]})
         headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
 
-        connection = http.client.HTTPConnection(self.client_uri)
-        connection.request('POST', self.client_url, params, headers)
-
-        response = connection.getresponse()
-        connection.close()
+        try:
+            connection = http.client.HTTPConnection(self.client_uri)
+            connection.request('POST', self.client_url, params, headers)
+            response = connection.getresponse()
+            connection.close()
+        except:
+            print("[ ERROR ] connection to remote server failed ")
