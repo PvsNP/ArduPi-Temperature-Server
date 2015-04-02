@@ -20,7 +20,7 @@ def create_database():
     os.makedirs(server.database.resources_path,
                 exist_ok=True)
     # create the database
-    connection = sqlite3.connect(server.database.database_name)
+    connection = sqlite3.connect(server.database.database_complete_path)
     cursor = connection.cursor()
     cursor.execute(server.database.creation_query)
     connection.commit()
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     server = ServerConfiguration()
 
     # proceedings authorization is required
-    authorized = input("This is an installation wizard of a Python simple server for IoT purposes. Proceed? (y/n)\n")
+    authorized = input("This is an installation wizard of a Python simple server for IoT purposes. Proceed? (y/n) : ")
     authorized = authorized.lower()
 
     if authorized != "y":
@@ -44,6 +44,7 @@ if __name__ == "__main__":
         exit()
     else:
         # initializations
+        server.config_init("./main.cf")
         create_database()
-        print("[ OK ] setup completed.")
+        print("[ OK ] setup completed.\n")
         exit()

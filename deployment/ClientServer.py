@@ -79,7 +79,8 @@ class WebClient:
         :return: None
         """
         while not self.check_connection():
-            time.sleep(10)
+            print("[ WARNING ] internet connection not found...")
+            time.sleep(5)
 
         data = self.database.retrieve_values(id)
 

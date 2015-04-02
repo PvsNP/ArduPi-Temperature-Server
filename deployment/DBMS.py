@@ -6,15 +6,14 @@ class TemperatureDatabase():
     data from the sensor connected to the Raspberry Pi
     """
 
-    def __init__(self, db_path, db_name, temp_table):
+    def __init__(self, db_path, temp_table):
         """
         this is the class constructor
         :param db_path: string, the path which identifies the resources of the db
-        :param db_name: string, the db name used to specify the database to sqlite engine
         :param temp_table: string, the table name used to store temperatures data
         :return: None
         """
-        self.database = db_path + "/" + db_name
+        self.database = db_path
         self.table = temp_table
 
 

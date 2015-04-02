@@ -84,9 +84,8 @@ def startup():
     global server
     server = ServerConfiguration()
     server.config_init("main.cf")
-
+    print("\n[ LOG ] login date: ", time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), "\n[ OK ] Server running ...")
     database = TemperatureDatabase(server.database.database_complete_path,
-                                   server.database.database_name,
                                    server.database.table_name)
     global id_flag
     id_flag = False
