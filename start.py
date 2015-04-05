@@ -16,8 +16,14 @@ def monitoring(database, lock, debug=False):
     :return: None
     """
     global server
-    ser = serial.Serial(server.arduino.usb_port,
-                        server.arduino.baud_rate)
+
+    try:
+        ser = serial.Serial(server.arduino.usb_port,
+                            server.arduino.baud_rate)
+    except:
+        print("[ ERROR ] serial initialization failed - monitor terminated")
+        sys.exit()
+
     monitor = Monitor(database)
     counter = 0
     acquired = False
@@ -27,8 +33,12 @@ def monitoring(database, lock, debug=False):
         if not acquired:
             lock.acquire()
             acquired = True
+        try:
+            val = str(ser.readline(), 'ascii')
+        except:
+            print("[ ERROR ] serial reading failed - monitor terminated")
+            sys.exit()
 
-        val = str(ser.readline(), 'ascii')
         val = val[0:len(val) - 2]
         try:
             val = int(val)
