@@ -41,7 +41,11 @@ def monitoring(database, lock, debug=False):
 
         val = val[0:len(val) - 2]
         try:
-            val = int(val)
+            val = float(val)
+            if val > 100:
+                val = float(str(val)[0:2])
+                # this is necessary in case of superimpositions in the serial interface
+                # it is open an issue to solve without this trick such a bug
         except ValueError:
             continue
 
