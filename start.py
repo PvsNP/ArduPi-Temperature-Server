@@ -84,8 +84,10 @@ def azure_interface(database, lock):
         lock.acquire()
         global id_flag
         if id_flag:
-            client.send_data(id_counter_local)
-            print("[ SUCCESS ] connection correctly performed")
+            if client.send_data(id_counter_local):
+                print("[ SUCCESS ] connection correctly performed")
+            else:
+                print("[ ERROR ] connection to remote service failed")
             id_counter_local += 1
             id_flag = False
             

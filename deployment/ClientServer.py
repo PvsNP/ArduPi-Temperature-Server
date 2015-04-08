@@ -76,7 +76,7 @@ class WebClient:
         """
         this function will be used to send data to the remote server
         :param id: integer
-        :return: None
+        :return: boolean for connection success
         """
         while not self.check_connection():
             print("[ WARNING ] internet connection not found...")
@@ -85,12 +85,16 @@ class WebClient:
         data = self.database.retrieve_values(id)
 
         params = urllib.parse.urlencode({'temperature': data[1], 'measuretime': data[2]})
-        headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
+        headers = {"Content-type": "application/x-www-form-urlencoded",
+                   "Host": "your_remote_host",
+                   "X-ZUMO-APPLICATION": "your_personal_code",
+                   "Cache-Control": "no-cache"}
 
         try:
             connection = http.client.HTTPConnection(self.client_uri)
             connection.request('POST', self.client_url, params, headers)
             connection.getresponse()
             connection.close()
+            return True
         except:
-            print("[ ERROR ] connection to remote server failed ")
+            return False
