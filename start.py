@@ -49,7 +49,12 @@ def monitoring(database, lock, debug=False):
         except ValueError:
             continue
 
-        monitor.insert_data(val)
+        try:
+            monitor.insert_data(val)
+        except:
+            print("[ ERROR ] no database found: please configure your system starting setup script! - monitor terminated")
+            sys.exit()
+
         if debug:
             print("[DEBUG] data inserted...", counter)
 
